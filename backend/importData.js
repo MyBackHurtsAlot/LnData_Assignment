@@ -40,7 +40,7 @@ const exportData = async () => {
         connection = await pool.getConnection();
 
         const [rows] = await connection.query("SELECT * FROM players");
-        const jsonData = JSON.stringify(rows);
+        const jsonData = JSON.stringify(rows, null, 2);
 
         await util.promisify(fs.writeFile)("nba.sql", jsonData);
     } catch (error) {
