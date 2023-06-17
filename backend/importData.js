@@ -26,7 +26,7 @@ const importData = async () => {
 
             console.log(`${newPlayersData.length} new data imported`);
         }
-        await exportData();
+        // await exportData();
 
         connection.release();
     } catch (error) {
@@ -34,21 +34,21 @@ const importData = async () => {
     }
 };
 
-const exportData = async () => {
-    let connection;
-    try {
-        connection = await pool.getConnection();
+// const exportData = async () => {
+//     let connection;
+//     try {
+//         connection = await pool.getConnection();
 
-        const [rows] = await connection.query("SELECT * FROM players");
-        const jsonData = JSON.stringify(rows, null, 2);
+//         const [rows] = await connection.query("SELECT * FROM players");
+//         const jsonData = JSON.stringify(rows, null, 2);
 
-        await util.promisify(fs.writeFile)("nba.sql", jsonData);
-    } catch (error) {
-        console.error("Error exporting data:", error);
-    } finally {
-        if (connection) {
-            connection.release();
-        }
-    }
-};
-module.exports = { importData, exportData };
+//         await util.promisify(fs.writeFile)("nba.sql", jsonData);
+//     } catch (error) {
+//         console.error("Error exporting data:", error);
+//     } finally {
+//         if (connection) {
+//             connection.release();
+//         }
+//     }
+// };
+module.exports = importData;

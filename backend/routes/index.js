@@ -2,11 +2,10 @@ const express = require("express");
 const router = express.Router();
 const playerController = require("../controllers/index");
 
-router.get("/", playerController.getAllPlayers);
-router.get("/:id", playerController.getPlayerById);
-router.get("/search", playerController.searchPlayers);
-router.post("/", playerController.createPlayer);
-router.put("/:id", playerController.updatePlayer);
-router.delete("/:id", playerController.deletePlayer);
+router.get("/");
+router.get("/api/allData/:page", playerController.getAllData);
+router.get("/api/teams", playerController.getAllTeamNames);
+router.get("/api/searchPlayer", playerController.searchPlayer);
+router.get("/api/playerDetail/:id", playerController.searchDetail);
 
 module.exports = router;

@@ -1,73 +1,50 @@
 const Player = require("../models/index");
 
-exports.getAllPlayers = async (req, res) => {
+exports.getAllData = async (req, res) => {
+    const { page } = req.params;
+    const pageSize = 15;
+    const offset = (page - 1) * pageSize;
     try {
-        const players = await Player.getAll();
+        const allData = await Player.getAllPlayers(offset, pageSize);
+        const count = await Player.getPlayerCount();
+        const totalPages = Math.ceil(count / pageSize);
+        res.json({
+            data: allData,
+            total: count,
+            currentPage: parseInt(page),
+            totalPages: totalPages,
+        });
+    } catch (error) {
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+
+exports.getAllTeamNames = async (req, res) => {
+    try {
+        const teamNames = await Player.getAllTeamNames();
+        res.json(teamNames);
+    } catch (error) {
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+
+exports.searchPlayer = async (req, res) => {
+    try {
+        const name = req.query.name;
+        const players = await Player.searchPlayer(name);
         res.json(players);
     } catch (error) {
         res.status(500).json({ error: "Internal Server Error" });
     }
 };
 
-exports.getPlayerById = async (req, res) => {
-    const playerId = req.params.id;
+exports.searchDetail = async (req, res) => {
     try {
-        const player = await Player.getById(playerId);
-        if (player) {
-            res.json(player);
-        } else {
-            res.status(404).json({ error: "Player not found" });
-        }
-    } catch (error) {
-        res.status(500).json({ error: "Internal Server Error" });
-    }
-};
-
-exports.searchPlayers = async (req, res) => {
-    const query = req.query.query;
-    try {
-        const players = await Player.search(query);
+        const id = req.params.id;
+        const players = await Player.searchId(id);
         res.json(players);
     } catch (error) {
-        res.status(500).json({ error: "Internal Server Error" });
-    }
-};
-
-exports.createPlayer = async (req, res) => {
-    const playerData = req.body;
-    try {
-        const createdPlayer = await Player.create(playerData);
-        res.status(201).json(createdPlayer);
-    } catch (error) {
-        res.status(500).json({ error: "Internal Server Error" });
-    }
-};
-
-exports.updatePlayer = async (req, res) => {
-    const playerId = req.params.id;
-    const playerData = req.body;
-    try {
-        const updatedPlayer = await Player.update(playerId, playerData);
-        if (updatedPlayer) {
-            res.json(updatedPlayer);
-        } else {
-            res.status(404).json({ error: "Player not found" });
-        }
-    } catch (error) {
-        res.status(500).json({ error: "Internal Server Error" });
-    }
-};
-
-exports.deletePlayer = async (req, res) => {
-    const playerId = req.params.id;
-    try {
-        const deletedPlayer = await Player.delete(playerId);
-        if (deletedPlayer) {
-            res.json({ message: "Player deleted successfully" });
-        } else {
-            res.status(404).json({ error: "Player not found" });
-        }
-    } catch (error) {
+        console.log("Error:", error);
         res.status(500).json({ error: "Internal Server Error" });
     }
 };
