@@ -36,8 +36,35 @@ const playerModel = {
             connection.release();
         }
     },
+    getTeamData: async (teamName, offset, pageSize) => {
+        const connection = await pool.getConnection();
+        try {
+            const query =
+                "SELECT * FROM players WHERE team_name = ? LIMIT ?, ?";
+            const [results] = await connection.query(query, [
+                teamName,
+                offset,
+                pageSize,
+            ]);
+            return results;
+        } finally {
+            connection.release();
+        }
+    },
+    getTeamDataCount: async (teamName) => {
+        const connection = await pool.getConnection();
+        try {
+            const query =
+                "SELECT COUNT(*) AS count FROM players WHERE team_name = ?";
+            const [result] = await connection.query(query, [teamName]);
+            return result[0].count;
+        } finally {
+            connection.release();
+        }
+    },
+
     //Search
-    searchPlayer: async (name) => {
+    searchPlayer: async (name, offset, pageSize) => {
         const connection = await pool.getConnection();
         try {
             let query = "SELECT * FROM players";
@@ -46,8 +73,28 @@ const playerModel = {
                 query += " WHERE name LIKE ?";
                 params.push(`%${name}%`);
             }
+            query += " LIMIT ?, ?";
+            params.push(offset, pageSize);
+
             const [results] = await connection.query(query, params);
             return results;
+        } finally {
+            connection.release();
+        }
+    },
+
+    getSearchPlayerCount: async (name) => {
+        const connection = await pool.getConnection();
+        try {
+            let query = "SELECT COUNT(*) AS count FROM players";
+            let params = [];
+            if (name) {
+                query += " WHERE name LIKE ?";
+                params.push(`%${name}%`);
+            }
+
+            const [result] = await connection.query(query, params);
+            return result[0].count;
         } finally {
             connection.release();
         }
@@ -57,6 +104,19 @@ const playerModel = {
         try {
             const query = "SELECT * FROM players WHERE id = ?";
             const [results] = await connection.query(query, [id]);
+            return results;
+        } finally {
+            connection.release();
+        }
+    },
+    getTeamsWithCount: async () => {
+        const connection = await pool.getConnection();
+        try {
+            const query = `SELECT team_name, COUNT(*) AS count
+                FROM players
+                GROUP BY team_name
+                HAVING count(team_name) <= 15`;
+            const [results] = await connection.query(query);
             return results;
         } finally {
             connection.release();

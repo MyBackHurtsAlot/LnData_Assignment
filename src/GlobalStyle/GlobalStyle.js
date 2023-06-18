@@ -7,7 +7,7 @@ const GlobalStyle = createGlobalStyle`
         font-size: 16px;
         background-color:${(props) => props.theme.colors.primary_primary_White};
         color:${(props) => props.theme.colors.primary_Dark};
-        margin:10px;
+        margin:10px 0;
     }
 `;
 export default GlobalStyle;

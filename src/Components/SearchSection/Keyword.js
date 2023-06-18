@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import useFetch from "../../Hooks/useFetch";
 
-const Keyword = () => {
+const Keyword = ({ keywordRef }) => {
     return (
         <>
             <KeywordsText>Keywords:</KeywordsText>
-            <KeywordInput></KeywordInput>
+            <KeywordInput ref={keywordRef} />
         </>
     );
 };

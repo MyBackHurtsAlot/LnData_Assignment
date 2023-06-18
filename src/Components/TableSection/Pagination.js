@@ -1,6 +1,6 @@
-/* eslint-disable react/prop-types */
 import React from "react";
 import styled from "styled-components";
+import { border } from "../../GlobalStyle/SharedStyles";
 
 const Pagination = ({
     currentPage,
@@ -11,8 +11,15 @@ const Pagination = ({
 }) => {
     const renderPageNumbers = () => {
         const pageNumbers = [];
-        let startPage = currentPage - 2;
-        let endPage = currentPage + 2;
+        let startPage;
+        let endPage;
+        if (totalPages < 5) {
+            startPage = 1;
+            endPage = totalPages;
+        } else {
+            startPage = currentPage - 2;
+            endPage = currentPage + 2;
+        }
 
         if (startPage < 1) {
             endPage += Math.abs(startPage) + 1;
@@ -67,7 +74,7 @@ const PageButton = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    outline: 3px solid ${(props) => props.theme.colors.primary_Grey};
+    ${border}
     background-color: ${(props) =>
         props.active ? props.theme.colors.primary_Lightgrey : "transparent"};
     color: ${(props) =>

@@ -1,13 +1,20 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../../Assets/logo.png";
 import { RxAvatar } from "react-icons/rx";
 
 const Header = () => {
+    const navigate = useNavigate();
+
     return (
         <>
             <HeaderWrapper>
-                <Logo />
+                <Logo
+                    onClick={() => {
+                        navigate("/");
+                    }}
+                />
                 <Avatar />
             </HeaderWrapper>
         </>
@@ -17,7 +24,8 @@ const Header = () => {
 export default Header;
 
 const HeaderWrapper = styled.section`
-    width: 100%;
+    width: 90%;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
 `;

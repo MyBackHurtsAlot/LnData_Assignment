@@ -2,28 +2,25 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import useFetch from "../../Hooks/useFetch";
 
-const TeamDropdown = () => {
+const TeamDropdown = ({ selectedTeamsTemp, setSelectedTeamsTemp }) => {
     const url = "http://localhost:9999/api/teams";
     const { data: teamNames, error } = useFetch(url);
-    const [selectedTeams, setSelectedTeams] = useState([]);
-    // console.log(teamNames);
-
     const handleSelectChange = (e) => {
         const selectedOption = e.target.value;
         if (selectedOption === "All") {
-            setSelectedTeams(teamNames.map((team) => team.team_name));
+            setSelectedTeamsTemp("All");
+            // setSelectedTeams(teamNames.map((team) => team));
         } else {
-            setSelectedTeams([selectedOption]);
+            setSelectedTeamsTemp(selectedOption);
         }
     };
     if (error) {
         return <div>Error: {error.message}</div>;
     }
-    console.log(selectedTeams);
     return (
         <>
             <TeamText>Team:</TeamText>
-            <TeamSelect value={selectedTeams} onChange={handleSelectChange}>
+            <TeamSelect value={selectedTeamsTemp} onChange={handleSelectChange}>
                 <option value="All">All</option>
                 {teamNames &&
                     teamNames.map((team) => (
