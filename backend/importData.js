@@ -1,18 +1,14 @@
 const pool = require("./pool");
-const fs = require("fs");
-const util = require("util");
 const playersData = require("./players.json");
 const importData = async () => {
     try {
         const connection = await pool.getConnection();
 
-        // 取得最後一筆資料的時間戳記
         const [lastRecord] = await connection.query(
             "SELECT MAX(timestamp_field) AS lastTimestamp FROM players"
         );
         const lastTimestamp = lastRecord[0].lastTimestamp;
 
-        // 過濾出新的資料
         const newPlayersData = playersData.filter(
             (player) => player.timestamp > lastTimestamp
         );
@@ -26,7 +22,6 @@ const importData = async () => {
 
             console.log(`${newPlayersData.length} new data imported`);
         }
-        // await exportData();
 
         connection.release();
     } catch (error) {
@@ -34,21 +29,4 @@ const importData = async () => {
     }
 };
 
-// const exportData = async () => {
-//     let connection;
-//     try {
-//         connection = await pool.getConnection();
-
-//         const [rows] = await connection.query("SELECT * FROM players");
-//         const jsonData = JSON.stringify(rows, null, 2);
-
-//         await util.promisify(fs.writeFile)("nba.sql", jsonData);
-//     } catch (error) {
-//         console.error("Error exporting data:", error);
-//     } finally {
-//         if (connection) {
-//             connection.release();
-//         }
-//     }
-// };
 module.exports = importData;

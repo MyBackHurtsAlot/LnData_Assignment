@@ -15,10 +15,8 @@ app.use((req, res, next) => {
     next();
 });
 
-// 設定路由
 app.use("/", router);
 
-// 啟動伺服器
 app.listen(port, () => {
     console.log(`http://localhost:${port}`);
 });

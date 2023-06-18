@@ -70,8 +70,6 @@ const Content = styled.div`
     border-bottom: 1px solid ${(props) => props.theme.colors.primary_Grey};
     &:first-child {
         font-size: 1.5rem;
-        /* background-color: ${(props) =>
-            props.theme.colors.primary_Lightgrey}; */
         border-bottom: 3px solid ${(props) => props.theme.colors.primary_Grey};
     }
     &:last-child {

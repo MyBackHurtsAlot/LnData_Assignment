@@ -27,11 +27,8 @@ const ModalChart = ({ teamsUnder15 }) => {
     );
     useEffect(() => {
         if (teamsUnder15 && teamsUnder15.length > 0) {
-            console.log(teamsUnder15);
             const teamNames = teamsUnder15.map((team) => team.team_name);
-            console.log(teamNames);
             const counts = teamsUnder15.map((team) => team.count);
-            console.log(counts);
 
             setLabels(teamNames);
             setCounts(counts);

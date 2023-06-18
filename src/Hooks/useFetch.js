@@ -18,7 +18,6 @@ const useFetch = (url, page) => {
         fetchData();
     }, [url, page]);
 
-    // console.log(data);
     return { data, error };
 };
 

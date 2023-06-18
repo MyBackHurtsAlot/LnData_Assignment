@@ -9,6 +9,10 @@ const DetailPageRouter = () => {
     const url = `http://localhost:9999/api/playerDetail/${currentPlayer}`;
     const { data: allData, error } = useFetch(url);
 
+    if (error) {
+        return <div>Error: {error.message}</div>;
+    }
+
     useEffect(() => {
         setCurrentPlayer(playerId.id);
     }, [playerId]);

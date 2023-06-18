@@ -38,6 +38,10 @@ const TableSection = ({ selectedTeam, keyword }) => {
 
     const { data: allData, error } = useFetch(url);
 
+    if (error) {
+        return <div>Error: {error.message}</div>;
+    }
+
     useEffect(() => {
         if (allData && allData.data) {
             setTableData(allData.data);
@@ -170,8 +174,8 @@ const Table = styled.table`
     border-collapse: separate;
     border-spacing: 0;
     border: 3px solid #1c1c1c;
-    border-width: 3px 3px 5px 7px;
-    border-radius: 1% 0 0 0/7% 1% 1% 1%;
+    border-width: 5px 3px 5px 7px;
+    border-radius: 1% 0 0 0/2% 1% 1% 1%;
 `;
 
 const TableHeader = styled.th`
@@ -194,7 +198,6 @@ const TableRow = styled.tr`
 const TableCell = styled.td`
     padding: 10px;
     text-align: center;
-    /* line-height: 0; */
     &:last-child {
         border-right: none;
     }

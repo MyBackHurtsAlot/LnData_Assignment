@@ -34,7 +34,6 @@ const ChartButton = styled.div`
     font-size: 1.5rem;
     margin: 15px 0;
     padding: 10px;
-    /* ${outline} */
     display: flex;
     justify-content: center;
     align-items: center;

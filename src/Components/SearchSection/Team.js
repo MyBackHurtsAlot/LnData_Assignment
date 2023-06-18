@@ -9,7 +9,6 @@ const TeamDropdown = ({ selectedTeamsTemp, setSelectedTeamsTemp }) => {
         const selectedOption = e.target.value;
         if (selectedOption === "All") {
             setSelectedTeamsTemp("All");
-            // setSelectedTeams(teamNames.map((team) => team));
         } else {
             setSelectedTeamsTemp(selectedOption);
         }
