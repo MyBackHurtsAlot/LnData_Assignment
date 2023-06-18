@@ -26,7 +26,3 @@
 | Connection pool | to maintain database connections |
 | .env |to store sensitive data |
 | Firebase | to deploy |
-
-## Home page
-
-![截圖 2023-06-19 上午6 38 59](https://github.com/MyBackHurtsAlot/LnData_Assignment/assets/105920543/97a855c2-2791-42c7-8185-ea2c801dc489)
