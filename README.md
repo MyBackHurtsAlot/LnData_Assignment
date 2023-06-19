@@ -1,5 +1,7 @@
 ## [LnData_Assignment](https://lndataassignment.web.app/)
 
+If firebase doesen't work, please clone this repository and the password to MySQL is 1234
+
 ## Catalog
   * [Framework and Library](README.md#framework-and-library)
 
