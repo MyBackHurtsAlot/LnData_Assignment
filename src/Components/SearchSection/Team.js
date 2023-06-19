@@ -13,9 +13,7 @@ const TeamDropdown = ({ selectedTeamsTemp, setSelectedTeamsTemp }) => {
             setSelectedTeamsTemp(selectedOption);
         }
     };
-    if (error) {
-        return <div>Error: {error.message}</div>;
-    }
+
     return (
         <>
             <TeamText>Team:</TeamText>

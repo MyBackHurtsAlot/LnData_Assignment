@@ -7,9 +7,7 @@ import ModalChart from "./Chart";
 const Modal = ({ setShowModal }) => {
     const url = `http://localhost:9999/api/under15`;
     const { data: teamsUnder15, error } = useFetch(url);
-    if (error) {
-        return <div>Error: {error.message}</div>;
-    }
+
     return (
         <>
             <ChartWrapper

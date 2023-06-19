@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { hover, border } from "../../GlobalStyle/SharedStyles";
 import TeamDropdown from "./Team";
 import Keyword from "./Keyword";
+import { device } from "../../GlobalStyle/Rwd";
 
 const SearchSection = ({ setSelectedTeam, setKeyword }) => {
     const [selectedTeamsTemp, setSelectedTeamsTemp] = useState("");
@@ -38,24 +39,30 @@ const SearchWrapper = styled.section`
     border-width: 3px 5px;
     border-radius: 1% 1% 3% 3% / 90% 90% 3% 2%;
     margin: 0 auto;
-    padding: 10px;
+    padding: 20px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     gap: 15px;
+    @media ${device.underTablet} {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+    }
 `;
 const TeamWrapper = styled.div`
-    width: 30%;
+    /* width: 30%; */
     height: 150px;
 `;
 const KeywordsWrapper = styled.div`
-    width: 30%;
+    /* width: 30%; */
     height: 150px;
 `;
 
 const SearchButton = styled.div`
     width: 15%;
     height: 50px;
-    margin: auto 0 0 auto;
+    margin: auto 0 0 0;
 
     cursor: pointer;
     display: flex;
@@ -64,4 +71,9 @@ const SearchButton = styled.div`
     font-size: 1.5rem;
     ${hover};
     ${border};
+    @media ${device.underTablet} {
+        width: 45%;
+        font-size: 1.2rem;
+        height: 70px;
+    }
 `;

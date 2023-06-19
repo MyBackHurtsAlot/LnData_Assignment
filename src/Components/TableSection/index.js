@@ -6,6 +6,7 @@ import { BiSearch } from "react-icons/bi";
 import { LuArrowDownUp } from "react-icons/lu";
 import Pagination from "./Pagination";
 import useSortableData from "../../Hooks/useSortableData";
+import { device } from "../../GlobalStyle/Rwd";
 
 const TableSection = ({ selectedTeam, keyword }) => {
     const [url, setUrl] = useState();
@@ -37,10 +38,6 @@ const TableSection = ({ selectedTeam, keyword }) => {
     }, [selectedTeam, keyword]);
 
     const { data: allData, error } = useFetch(url);
-
-    if (error) {
-        return <div>Error: {error.message}</div>;
-    }
 
     useEffect(() => {
         if (allData && allData.data) {
@@ -165,17 +162,22 @@ const TableSection = ({ selectedTeam, keyword }) => {
 export default TableSection;
 
 const TableWrapper = styled.section`
-    width: 90%;
-    margin: 0 auto;
+    width: 100%;
 `;
 
 const Table = styled.table`
-    width: 100%;
+    width: 90%;
+    margin: 0 auto;
     border-collapse: separate;
     border-spacing: 0;
     border: 3px solid #1c1c1c;
     border-width: 5px 3px 5px 7px;
     border-radius: 1% 0 0 0/2% 1% 1% 1%;
+    @media ${device.underW900} {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
 `;
 
 const TableHeader = styled.th`

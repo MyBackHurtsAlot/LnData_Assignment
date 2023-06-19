@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { outline, hover, border } from "../../GlobalStyle/SharedStyles";
+import { hover, border } from "../../GlobalStyle/SharedStyles";
 import Modal from "./Modal";
+import { device } from "../../GlobalStyle/Rwd";
 
 const Charts = () => {
     const [showModal, setShowModal] = useState(false);
@@ -40,4 +41,8 @@ const ChartButton = styled.div`
     cursor: pointer;
     ${hover};
     ${border};
+    @media ${device.underTablet} {
+        width: 150px;
+        font-size: 1.2rem;
+    }
 `;
