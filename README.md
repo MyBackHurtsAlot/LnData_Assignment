@@ -1,9 +1,35 @@
-## [LnData_Assignment](https://lndataassignment.web.app/)
-
-If firebase doesen't work, please clone this repository and the password to MySQL is 1234
+## LnData_Assignment
 
 ## Catalog
+  * [Installation](README.md#installation)
+  * [Run this app](READ.md#run-this-app)
   * [Framework and Library](README.md#framework-and-library)
+ 
+
+## Installation
+
+1. Clone
+```
+git clone https://github.com/MyBackHurtsAlot/LnData_Assignment
+```
+2. Install `package.json`
+```
+npm install
+```
+3. Import `nba.sql`
+```
+mysql -u [ user ] -p [ password ] < backend/nba.sql
+```
+4. Go to `backend / pool.js` and change `user` and `password` to yours
+
+## Run this app
+
+- ```
+  node backend/app.js
+  ```
+- ```
+  npm run start
+  ```
 
 ## Framework and Library
 
