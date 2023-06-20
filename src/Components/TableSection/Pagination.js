@@ -61,6 +61,8 @@ const Pagination = ({
     );
 };
 
+export default Pagination;
+
 const PaginationWrapper = styled.div`
     display: flex;
     align-items: center;
@@ -90,5 +92,3 @@ const PageButton = styled.div`
 const PageNumber = styled(PageButton)`
     width: 30px;
 `;
-
-export default Pagination;

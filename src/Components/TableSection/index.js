@@ -20,7 +20,6 @@ const TableSection = ({ selectedTeam, keyword }) => {
         if (selectedTeam === "All" && keyword === "") {
             setUrl(`http://localhost:9999/api/allData/${page}`);
         } else if (selectedTeam === "" && keyword) {
-            console.log(keyword);
             setUrl(
                 `http://localhost:9999/api/searchPlayer/${page}?name=${keyword}`
             );
@@ -74,7 +73,15 @@ const TableSection = ({ selectedTeam, keyword }) => {
         key: "points_per_game",
         direction: "descending",
     });
-
+    useEffect(() => {
+        if (sortedItems.length > 0) {
+            if (sortedItems.length < 15 && page === 1) {
+                setTotalPages(1);
+            } else {
+                setTotalPages(allData.totalPages);
+            }
+        }
+    }, [sortedItems]);
     return (
         <>
             <TableWrapper>
