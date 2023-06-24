@@ -39,6 +39,7 @@ mysql -u [ user ] -p [ password ] < backend/nba.sql
 | --------- | ----------  |
 | React | to build a Single Page Application |
 | Router | to set up routes |
+| Redux | for data storage |
 | Chart.js | to show charts |
 | Webpack |to bundle the modules |
 | ESLint & Prettier | to organize coding styles |
