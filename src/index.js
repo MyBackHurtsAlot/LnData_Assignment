@@ -4,6 +4,8 @@ import App from "./App.js";
 import { ThemeProvider } from "styled-components";
 import ResetStyle from "./GlobalStyle/resetStyle.js";
 import GlobalStyle from "./GlobalStyle/GlobalStyle.js";
+import { Provider } from "react-redux";
+import store from "./store/store.js";
 
 const theme = {
     colors: {
@@ -17,9 +19,11 @@ const theme = {
 };
 
 createRoot(document.querySelector("#root")).render(
-    <ThemeProvider theme={theme}>
-        <ResetStyle />
-        <GlobalStyle />
-        <App />
-    </ThemeProvider>
+    <Provider store={store}>
+        <ThemeProvider theme={theme}>
+            <ResetStyle />
+            <GlobalStyle />
+            <App />
+        </ThemeProvider>
+    </Provider>
 );

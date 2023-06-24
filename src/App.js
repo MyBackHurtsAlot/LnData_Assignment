@@ -4,6 +4,7 @@ import Header from "./Components/Header/Index";
 import PlayerList from "./Components/PlayerList/Index";
 import HomePageRouter from "./pages/HomePageRouter";
 import DetailPageRouter from "./pages/DetailPageRouter";
+
 const App = () => {
     return (
         <>

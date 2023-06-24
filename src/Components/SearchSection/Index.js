@@ -4,13 +4,25 @@ import { hover, border } from "../../GlobalStyle/SharedStyles";
 import TeamDropdown from "./Team";
 import Keyword from "./Keyword";
 import { device } from "../../GlobalStyle/Rwd";
+import { useSelector, useDispatch } from "react-redux";
+import { setTeam } from "../../actions/teamActions";
+import { setKeyword } from "../../actions/keywordSelections";
 
-const SearchSection = ({ setSelectedTeam, setKeyword }) => {
+const SearchSection = () => {
     const [selectedTeamsTemp, setSelectedTeamsTemp] = useState("");
     const keywordRef = useRef();
+    const dispatch = useDispatch();
+
+    const selectedTeam = useSelector(() => selectedTeamsTemp);
+
+    const keyword = useSelector((state) => state.keyword);
+    console.log(keyword);
+
     const sendSearch = () => {
-        setSelectedTeam(selectedTeamsTemp);
-        setKeyword(keywordRef.current.value);
+        // setSelectedTeam(selectedTeamsTemp);
+        // setKeyword(keywordRef.current.value);
+        dispatch(setTeam(selectedTeam));
+        dispatch(setKeyword(keywordRef.current.value));
     };
     return (
         <>
